@@ -19,32 +19,16 @@ const connect = function () {
   // Lets us know we connected, and sends the server our initials
   conn.on('connect', () => {
     conn.write('Name: T.M');
-    conn.write('Move: up');
     console.log('Successfully connected to game server');
-    conn.write('Move: right');
-    conn.write('Move: up');
-    conn.write('Move: left');
-    setInterval(() => {
-      conn.write('Move: up');
-    }, 50);
+    // setInterval(() => {
+    //   conn.write('Move: up');
+    // }, 50);
     // process.stdin.on('data', (message) => {
     //   conn.write(message);
     // });
   });
   return conn;
 }
-
-// const moveSnake = () => {
-//   const net = require('net');
-
-// const conn = net.createConnection({
-//   host: 'localhost',
-//   port: 50541
-// });
-// process.stdin.on('data', (message) => {
-//   conn.write(message);
-// });
-// }
 
 module.exports = connect;
 // module.exports = {
