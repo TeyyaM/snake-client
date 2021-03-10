@@ -1,3 +1,7 @@
+const { MOVE_UP_KEY,
+  MOVE_DOWN_KEY,
+  MOVE_LEFT_KEY,
+  MOVE_RIGHT_KEY } = require('./constants');
 // Stores the active TCP connection object.
 let connection;
 
@@ -16,17 +20,31 @@ const setupInput = (conn) => {
 }
 
 const handleUserInput = (input) => {
+  // ^C to exit
   if (input === '\u0003') {
     console.log('Leaving!');
     process.exit();
-  } else if (input === 'w') {
-    connection.write('Move: up')
-  } else if (input === 'a') {
-    connection.write('Move: left')
-  } else if (input === 's') {
-    connection.write('Move: down')
-  } else if (input === 'd') {
-    connection.write('Move: right')
+  }
+  // if (controls.move[input]) {
+  //   connection.write(`Move: ${controls.move[input]}`)
+  // }
+  // To move with WASD
+  if (input === MOVE_UP_KEY) {
+    connection.write('Move: up');
+  } else if (input === MOVE_DOWN_KEY) {
+    connection.write('Move: down');
+  } else if (input === MOVE_LEFT_KEY) {
+    connection.write('Move: left');
+  } else if (input === MOVE_RIGHT_KEY) {
+    connection.write('Move: right');
+  }
+  // To send messages!
+  if (input === ' ') {
+    connection.write('Say: I hunger');
+  } else if (input === 'm') {
+    connection.write('Say: FEEED MEEEE!');
+  } else if (input === 'n') {
+    connection.write('Say: Nomnomnom!');
   }
 };
 
